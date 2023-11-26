@@ -39,7 +39,6 @@ var queue;
 var rv;
 var partySize;
 var leftToGroup;
-
 var exit = false;
 
 
@@ -49,7 +48,7 @@ var exit = false;
 
 //party object 
 function Party(width, color, size){
-    // this.x = x;
+
     this.width = width;
     this.color = color;
     this.size = size;
@@ -115,13 +114,7 @@ function animate(){
         guestNum = undefined;
         rowNum = undefined;
     }
-
-    
-
-    // console.log("guest num: "+guestNum);
-    // console.log("row num: "+rowNum);
-
-    
+   
 
 }
 
@@ -168,7 +161,6 @@ document.querySelector(".btn1").addEventListener('click', ()=>{
     if (checkAmountBtn(1, partySize)){
         guestNum = 1;
     }
-
 })
 
 document.querySelector(".btn2").addEventListener('click', ()=>{
@@ -197,37 +189,31 @@ document.querySelector(".row1").addEventListener('click', ()=>{
     if (checkValidRow(1, guestNum, rv)){
         rowNum = 1;
     }
-
 })
 document.querySelector(".row2").addEventListener('click', ()=>{
     if (checkValidRow(2, guestNum, rv)){
         rowNum = 2;
     }
-
 })
 document.querySelector(".row3").addEventListener('click', ()=>{
     if (checkValidRow(3, guestNum, rv)){
         rowNum = 3;
     }
-
 })
 document.querySelector(".row4").addEventListener('click', ()=>{
     if (checkValidRow(4, guestNum, rv)){
         rowNum = 4;
     }
-
 })
 document.querySelector(".row5").addEventListener('click', ()=>{
     if (checkValidRow(5, guestNum, rv)){
         rowNum = 5
     }
-
 })
 document.querySelector(".row6").addEventListener('click', ()=>{
     if (checkValidRow(6, guestNum, rv)){
         rowNum = 6;
     }
-
 })
 
 
