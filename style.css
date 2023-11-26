@@ -1,0 +1,147 @@
+*{
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+
+body{
+    margin: 0;
+    overflow: hidden;
+}
+
+canvas{
+    z-index: 5;
+    background-color: #222831;
+}
+.grouperPanel{
+    position: absolute;
+    top: 500px;
+    right: 650px;
+    bottom: 50px;
+    left: 650px;
+    background: #EEEEEE;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+    border-radius: 10px;
+}
+
+.btnPanel{
+    display: none;
+}
+
+.welcomeScreen{
+    display: flex;
+    flex-flow: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+    color: #222831;
+    font-size: 25px;
+    font-weight: 500;
+    align-items: center;
+}
+
+.title{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    color: #393E46;
+    align-items: center;
+    justify-content: center;
+}
+
+p{
+    margin: 0;
+}
+
+.title p{
+    margin: 0 5px;
+}
+
+.title .row{
+    margin: 5px;
+    display: flex;
+}
+
+.mainName{
+    position: relative;
+    text-align: center;
+    font-size: 40px;
+    font-weight: 900;
+}
+
+.startBtn{
+    position: absolute;
+    margin: auto 0;
+    top: 0;
+    bottom: 0;
+    width: 300px;
+    color: #222831;
+}
+
+.selectGrid{
+    /* background-color: blue; */
+    position: absolute;
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-rows: auto;
+    top: 100px;
+    right: 50px;
+    left: 50px;
+    justify-content: center;
+    gap: 30px;
+}
+
+
+.selectGrid .row{
+    display: grid;
+    grid-auto-flow: column;
+    gap: 30px;
+}
+
+#selectRow .selectGrid button{
+    width: 150px;
+    height: 80px;
+}
+
+button{
+    background-color: #00ADB5;
+    border: none;
+    width: 200px;
+    height: 100px;
+    border-radius: 5px;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+button:hover{
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+}
+
+.title{
+    font-size: 25px;
+    font-weight: 600;
+    color: #393E46;
+}
+
+.exitBtn{
+    z-index: 50;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: #f44336;
+    color: #EEEEEE;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+}
+

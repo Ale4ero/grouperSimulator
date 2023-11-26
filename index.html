@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gringotts</title>
+</head>
+
+
+<canvas></canvas>
+
+<div  id="grouperPanel" class="grouperPanel">
+    <body>
+        <div class="welcomeScreen">
+            <p style="margin-bottom: 0;">Welcome to</p> 
+            <div class="mainName">
+                Grouper Simulator
+            </div>
+
+            <button class="startBtn" id="startBtn">
+                Start
+            </button>
+        </div>
+
+        <div class="btnPanel" id="numGuests">
+            
+            <button class="exitBtn">X</button>
+            
+            <div class="title">
+                <div class="row">
+                    <p>You have a party of: </p><p class="partyNum"></p>
+                </div>
+                <div class="row">
+                    <p>Choose an amount of guests:</p>
+                </div>
+                
+            </div>
+            
+            <div class="selectGrid">
+                <div class="row">
+                    <div class="gridItem">
+                        <button class="btn1">1</button>                    
+                    </div>
+                    <div class="gridItem" >
+                        <button class="btn2">2</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="gridItem">
+                        <button class="btn3">3</button>
+                    </div>
+                    <div class="gridItem">
+                        <button class="btn4">4</button>
+                    </div>
+                </div>                
+            </div> 
+
+        </div>
+
+        <div class="btnPanel" id="selectRow">
+            
+            <button class="exitBtn">X</button>
+            
+            <div class="title">
+                <div class="row">
+                    <p>Send </p><p class="numGuests"></p><p>guests to row:</p>
+                </div>
+
+                <div class="selectGrid">
+                    <div class="row">
+                        <div class="gridItem">
+                            <button class="row1">1</button>                    
+                        </div>
+                        <div class="gridItem" >
+                            <button class="row2">2</button>
+                        </div>
+                        <div class="gridItem" >
+                            <button class="row3">3</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="gridItem">
+                            <button class="row4">4</button>
+                        </div>
+                        <div class="gridItem">
+                            <button class="row5">5</button>
+                        </div>
+                        <div class="gridItem">
+                            <button class="row6">6</button>
+                        </div>
+                    </div>                
+                </div> 
+                
+            </div>
+
+        </div>
+    </body>
+</div>
+
+<script src="grouper.js"></script>
+<script src="util.js"></script>
+    
+
+
+<link rel="stylesheet" href="./style.css">
+
+</html>
