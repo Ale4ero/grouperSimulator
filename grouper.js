@@ -96,8 +96,13 @@ function animate(){
     //draw the queue to the canvas
     drawQueue(queue);
 
+
+
     //draw the rv graphic to the canvas
     drawRv();
+
+    drawRvGuests(rv);
+    
 
     //display the party size to the user based on the next guest in the queue
     document.querySelector('.partyNum').innerHTML = queue[0].size;
@@ -115,7 +120,6 @@ function animate(){
         rowNum = undefined;
     }
    
-
 }
 
 
@@ -131,6 +135,7 @@ document.querySelector(".exitBtn").addEventListener('click', ()=>{
     document.querySelector('.welcomeScreen').style.display = 'flex';
     document.querySelector('#numGuests').style.display = 'none';
     document.querySelector('#selectRow').style.display = 'none';
+    document.querySelector('.grouperPanel').style.display = 'none';
     c.clearRect(0, 0, canW, canH);
     exit = true;
 })
@@ -142,7 +147,7 @@ document.querySelector(".exitBtn").addEventListener('click', ()=>{
 //START button game starts
 document.querySelector("#startBtn").addEventListener('click', ()=>{
     console.log('start application.')
-
+    document.querySelector('.grouperPanel').style.display = 'flex';
     document.querySelector('.welcomeScreen').style.display = 'none';
     document.querySelector('#numGuests').style.display = 'flex';
 

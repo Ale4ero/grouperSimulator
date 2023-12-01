@@ -53,32 +53,37 @@ function createNewRV(){
 
 //function draws the structure of the rv
 function drawRv(){
-    var dx = 50;
-    var dy = 130;
+    var rvX = 50;
+    var rvY = 150;
+    var rvWidth = 450;
+    var rvHeight = 600;
+
+    var dx = 100;
+    var dy = 200;
+
+    c.beginPath();
+    c.strokeStyle = "#00ADB5"
+    c.fillStyle = "#393E46"
+    c.roundRect(rvX, rvY, rvWidth, rvHeight, 10);
+    c.fill();
+    c.stroke();
+
     for (var i=0;i<6;i++){
         drawRow(dx, dy);
-        dy+=110;
-        if(i == 5){
-            c.lineWidth = 5;
-            c.beginPath();
-            c.moveTo(0, dy-30);
-            c.lineTo(450, dy-30);
-            c.strokeStyle = '#EEEEEE'
-            c.stroke();
-        }
+        dy+=90;
     }
 }
 
 //this draws a single row of the rv
 function drawRow(dx, dy){
     c.lineWidth = 5;
-    c.beginPath();
-    c.moveTo(0, dy-30);
-    c.lineTo(450, dy-30);
     c.strokeStyle = '#EEEEEE'
-    c.stroke();
+    
     for(var i = 0; i<4;i++){
-        c.rect(dx, dy, 50, 50);
+        var seatW = 50;
+        var seatH = 50;
+        c.beginPath();
+        c.roundRect(dx, dy, seatW, seatH, 5);
         c.stroke()
         dx+=100;
     }
@@ -145,9 +150,10 @@ function moveGuests(rowNum, guestNum, rv, queue){
     //update position for however many guest user chose
     for(var i = 0; i < guestNum ; i++){
         //initialize the position of the seats and the gaps between
-        var rowx = 75;
-        var rowy = 155;
+        var rowx = 125;
+        var rowy = 225;
         var seatGap = 100;
+        var rowGap = 90;
         //get empty seat number in row
         for(var j = 0; j < 4;j++){
             if(rv[rowNum][j] == 0){
@@ -159,7 +165,7 @@ function moveGuests(rowNum, guestNum, rv, queue){
         //new position to draw guest
         rowx = rowx + (seatGap*seatNum);
         console.log('Moving: 75 + 150*'+seatNum);
-        rowy = rowy + (110*rowNum);
+        rowy = rowy + (rowGap*rowNum);
         console.log('Moving: 75 + 110*'+rowNum);
         var nextGuest = queue[0];
         
@@ -191,10 +197,10 @@ function moveQueue(queue){
 
 //this function reads the array and draws the existing guests onto their seats
 function drawRvGuests(rv){
-    var row1x = 75;
-    var row1y = 155;
+    var row1x = 125;
+    var row1y = 225;
     var seatGap = 100;
-    var rowGap = 110;
+    var rowGap = 90;
 
     for (var i = 0; i<6; i++){
         for(var j = 0;j<4;j++){

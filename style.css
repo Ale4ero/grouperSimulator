@@ -10,21 +10,51 @@ body{
 }
 
 canvas{
-    z-index: 5;
+    z-index: 300;
     background-color: #222831;
 }
+
+.rv{
+    display: flex;
+    position: absolute;
+    width: 450px;
+    height: 550px;
+    background: #393E46;
+    border: 2px solid #00ADB5;
+    border-radius: 10px;
+    top: 0;
+    bottom: 0;
+    left: 40px;
+    margin: auto 0;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 0;
+}
+
+.rvRow{
+    display: flex;
+    height: 60px;
+    width: 400px;
+    margin: 0 20px;
+    background-color: #222831;
+    border-radius: 5px;
+
+}
 .grouperPanel{
+    display: none;
     position: absolute;
     top: 500px;
     right: 650px;
     bottom: 50px;
     left: 650px;
-    background: #EEEEEE;
-    display: flex;
+    background: #393E46;
+    border: 5px solid #EEEEEE;
     justify-content: center;
     align-items: center;
     z-index: 20;
-    border-radius: 10px;
+    border-radius: 20px;
 }
 
 .btnPanel{
@@ -39,11 +69,16 @@ canvas{
     left: 0;
     right: 0;
     bottom: 0;
+    width: 1000px;
+    height: 500px;
+    margin: auto;
     text-align: center;
-    color: #222831;
+    background-color: #393E46;
+    color: #EEEEEE;
     font-size: 25px;
     font-weight: 500;
     align-items: center;
+    border-radius: 20px;
 }
 
 .title{
@@ -71,40 +106,46 @@ p{
     display: flex;
 }
 
+.titleContainer{
+    margin: auto 0;
+}
+
 .mainName{
     position: relative;
     text-align: center;
-    font-size: 40px;
+    font-size: 70px;
     font-weight: 900;
+    margin-bottom: 50px;
 }
 
 .startBtn{
-    position: absolute;
+    position: relative;
     margin: auto 0;
     top: 0;
     bottom: 0;
     width: 300px;
     color: #222831;
+    background-color: #00ADB5;
 }
 
 .selectGrid{
     /* background-color: blue; */
-    position: absolute;
+    position: relative;
     display: grid;
     grid-auto-flow: row;
     grid-template-rows: auto;
-    top: 100px;
-    right: 50px;
-    left: 50px;
+    /* top: 100px; */
+    /* right: 50px;
+    left: 50px; */
     justify-content: center;
-    gap: 30px;
+    gap: 45px;
 }
 
 
 .selectGrid .row{
     display: grid;
     grid-auto-flow: column;
-    gap: 30px;
+    gap: 50px;
 }
 
 #selectRow .selectGrid button{
@@ -113,35 +154,92 @@ p{
 }
 
 button{
-    background-color: #00ADB5;
+    background-color: #222831;
     border: none;
-    width: 200px;
-    height: 100px;
-    border-radius: 5px;
-    font-size: 40px;
+    width: 180px;
+    height: 90px;
+    border-radius: 10px;
+    font-size: 60px;
     font-weight: bold;
+    color: #00ADB5;
 }
 
 button:hover{
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.9);
     cursor: pointer;
 }
 
+
 .title{
+    position: relative;
     font-size: 25px;
     font-weight: 600;
-    color: #393E46;
+    color: #EEEEEE;
 }
 
 .exitBtn{
-    z-index: 50;
-    position: absolute;
-    top: 15px;
-    right: 15px;
     background-color: #f44336;
-    color: #EEEEEE;
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
 }
 
+.panelContainer{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    /* background-color: pink; */
+    /* left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0; */
+    gap: 30px;
+
+    align-items: center;
+    justify-content: center;
+
+}
+
+.optionsGrid{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    background-color: #222831;
+    gap: 15px;
+    padding: 10px;
+    border-radius: 10px;
+    /* right: 0; */
+}
+
+#optButton{
+    display: flex;
+    width: 40px;
+    height: 40px;
+    font-size: 30px;
+    align-items: center;
+    justify-content: center;
+}
+
+.sendBtn{
+    background-color: #0DB44F;
+}
+
+.backBtn{
+    background-color: #43A1F8;
+}
+
+.waitBtn{
+    background-color: #FCE51C;
+}
+
+#numGuests{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    gap: 30px;
+}
+
+.fa-solid{
+    color: #222831;
+}
