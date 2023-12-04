@@ -52,14 +52,18 @@ function createNewRV(){
 }
 
 //function draws the structure of the rv
-function drawRv(){
-    var rvX = 50;
-    var rvY = 150;
+function drawRv(x, y){
+    console.log('draw rv')
+    var rvX = x;
+    var rvY = y;
     var rvWidth = 450;
     var rvHeight = 600;
 
-    var dx = 100;
-    var dy = 200;
+    var rowX = x+50;
+    var rowY = y+50;
+
+    var numX = x + 435;
+    var numY = y + 57;
 
     c.beginPath();
     c.strokeStyle = "#00ADB5"
@@ -69,8 +73,10 @@ function drawRv(){
     c.stroke();
 
     for (var i=0;i<6;i++){
-        drawRow(dx, dy);
-        dy+=90;
+        drawRow(rowX, rowY);
+        drawNumber(i+1, numX, numY);
+        numY +=90;
+        rowY+=90;
     }
 }
 
@@ -179,7 +185,9 @@ function moveGuests(rowNum, guestNum, rv, queue){
         drawRvGuests(rv);
 
         //update the position of first guest in line
+        console.log(nextGuest)
         nextGuest.update(rowx, rowy);
+        
     }    
 
     console.log(rv);
@@ -191,14 +199,14 @@ function moveQueue(queue){
     queue.shift();
     c.clearRect(0, 0, canW, canH);
     drawQueue(queue);
-    drawRv();
+    drawRv(rvX, rvY);
 }
 
 
 //this function reads the array and draws the existing guests onto their seats
-function drawRvGuests(rv){
-    var row1x = 125;
-    var row1y = 225;
+function drawRvGuests(rv,  x, y){
+    var row1x = x+75;
+    var row1y = y+75;
     var seatGap = 100;
     var rowGap = 90;
 
@@ -212,3 +220,19 @@ function drawRvGuests(rv){
         }
     }
 }
+
+function drawNumber(number, x, y){
+    c.lineWidth = 3
+    c.beginPath();
+    c.fillStyle = "#393E46";
+    c.strokeStyle = "#00ADB5";
+    c.roundRect(x, y, 30, 40, 5);
+    c.fill();
+    c.stroke();
+    c.fillStyle = '#ffffff';
+    c.font = "20px sans-serif"
+    c.fillText(number,x + 10, y + 25);
+    console.log("number")
+}
+
+// drawNuber(1, 480, 200)

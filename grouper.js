@@ -39,7 +39,12 @@ var queue;
 var rv;
 var partySize;
 var leftToGroup;
+var moveRv = false;
 var exit = false;
+var moveRv
+var rvX;
+var rvY;
+var rvY2;
 
 
 
@@ -74,7 +79,11 @@ function Party(width, color, size){
 
 //function that initializes the app
 function init(){
+    rvX = 50;
+    rvY = 150;
+    rvY2 = canH - 100; 
     exit = false;
+    moveRv = false;
 
     //once game is started create the queue and store it 
     queue = createQueue();
@@ -83,6 +92,16 @@ function init(){
     //create a 2d array representing our rv
     rv = createNewRV();
     console.log(rv);
+
+    drawQueue(queue);
+
+    
+
+    //draw the rv graphic to the canvas
+    drawRv(rvX, rvY);
+    drawRv(rvX, rvY2);
+
+    drawRvGuests(rv, rvX, rvY);
 }
 
 
@@ -93,31 +112,60 @@ function animate(){
 
     requestAnimationFrame(animate);
 
-    //draw the queue to the canvas
-    drawQueue(queue);
+    
 
-
-
-    //draw the rv graphic to the canvas
-    drawRv();
-
-    drawRvGuests(rv);
+    
     
 
     //display the party size to the user based on the next guest in the queue
-    document.querySelector('.partyNum').innerHTML = queue[0].size;
+    document.querySelector('.partyNum').innerHTML = queue[0]?.size;
 
     
     //size of the next party in line
-    partySize = queue[0].size;
+    partySize = queue[0]?.size;
 
 
     //when user picks the order move guests
     if(guestNum != undefined && rowNum != undefined){
         //move guests into users input, then reset input
         moveGuests(rowNum, guestNum, rv, queue);
+
+        //draw the queue to the canvas
+        drawQueue(queue);
+
+
+        //draw the rv graphic to the canvas
+        drawRv(rvX, rvY);
+        drawRv(rvX, rvY2);
+
+        drawRvGuests(rv, rvX, rvY);
+
+
         guestNum = undefined;
         rowNum = undefined;
+    }
+
+    //move send button, move rv
+    if (moveRv){
+        if(rvY > -700){
+            console.log("move")
+            rvY -= 10;
+            
+        }
+        if (rvY2 > 160){
+            rvY2 -= 6;
+            drawRv(rvX, rvY2);
+        }else{
+            
+
+            moveRv = false;
+            init();
+        }
+        c.clearRect(0,0, canW, canH)
+            drawQueue(queue);
+            drawRv(rvX, rvY);
+            drawRv(rvX, rvY2);
+            drawRvGuests(rv, rvX, rvY);
     }
    
 }
@@ -223,11 +271,29 @@ document.querySelector(".row6").addEventListener('click', ()=>{
 
 
 
+document.querySelector(".sendBtn").addEventListener('click', ()=>{
+    moveRv = true;
+})
+
+document.querySelector(".backBtn").addEventListener('click', ()=>{
+    document.querySelector('#numGuests').style.display = 'flex';
+    document.querySelector('#selectRow').style.display = 'none';
+})
 
 
 
 
 
+function sendRv(){
+    console.log("send rv!")
+    while (rvY > -650){
+            console.log(rvY)
+            rvY -= 1;
+            c.clearRect(0,0, canW, canH)
+            drawQueue(queue);
+            drawRv(rvX, rvY);
+    }
+}
 
 
 

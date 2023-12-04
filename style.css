@@ -153,6 +153,21 @@ p{
     height: 80px;
 }
 
+#selectRow .selectGrid{
+    gap: 10px;
+}
+#selectRow .selectGrid .row{
+    gap: 20px;
+}
+
+#selectRow .panelContainer{
+    gap: 10px;
+}
+
+#selectRow .optionsGrid{
+    gap: 80px;
+}
+
 button{
     background-color: #222831;
     border: none;
@@ -162,11 +177,17 @@ button{
     font-size: 60px;
     font-weight: bold;
     color: #00ADB5;
+    box-shadow: 5px 4px 1px #4c4e52;
 }
 
 button:hover{
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.9);
+    opacity: .6;
     cursor: pointer;
+}
+
+button:active{
+    box-shadow: 2px 1px 1px #4c4e52;
+    transform: translate(3px, 3px);
 }
 
 
@@ -202,7 +223,7 @@ button:hover{
     position: relative;
     flex-direction: column;
     background-color: #222831;
-    gap: 15px;
+    gap: 30px;
     padding: 10px;
     border-radius: 10px;
     /* right: 0; */
@@ -215,6 +236,17 @@ button:hover{
     font-size: 30px;
     align-items: center;
     justify-content: center;
+    box-shadow: 3px 3px 1px #4c4e52;
+}
+
+#optButton:hover{
+    opacity: 0.6;
+}
+
+#optButton:active{
+    box-shadow: 1px 1px 1px #4c4e52;
+    transform: translate(2px, 2px);
+
 }
 
 .sendBtn{
