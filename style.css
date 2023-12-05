@@ -101,7 +101,7 @@ p{
     margin: 0 5px;
 }
 
-.title .row{
+.row{
     margin: 5px;
     display: flex;
 }
@@ -223,7 +223,7 @@ button:active{
     position: relative;
     flex-direction: column;
     background-color: #222831;
-    gap: 30px;
+    gap: 15px;
     padding: 10px;
     border-radius: 10px;
     /* right: 0; */
@@ -257,6 +257,10 @@ button:active{
     background-color: #43A1F8;
 }
 
+.singleBtn{
+    background-color: #43A1F8;
+}
+
 .waitBtn{
     background-color: #FCE51C;
 }
@@ -274,4 +278,43 @@ button:active{
 
 .fa-solid{
     color: #222831;
+}
+
+.counterPanel{
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    background-color: #393E46;
+    width: 700px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 30px;
+    position: absolute;
+    border-radius: 5px;
+}
+
+.counterPanel  h3{
+    margin: 0;
+}
+
+.counterItem{
+    color: #EEEEEE;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px auto;
+}
+
+.counterItem .timeText{
+    color: #f44336;
+    
+}
+
+.counterItem .row{
+    font-size: 25px;
+    font-weight: bold;
 }

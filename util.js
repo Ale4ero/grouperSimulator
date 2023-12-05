@@ -5,12 +5,18 @@
 
 
 //create queue function
-function createQueue(){
+function createQueue(singles){
     var queue = [];
-    var queueLen = 8;
+    if(singles) var queueLen = 15;
+    else var queueLen = 3;
+    
 
     for (var i = 0; i<queueLen;i++){
-        var party = new Party(20, randomCssRgba(), randomNumber(1, 5));
+        if (singles){
+            var party = new Party("#000000", 1);
+        }else{
+            var party = new Party(randomCssRgba(), randomNumber(2, 9));
+        }
         for(var j = 0; j < party.size;j++){
             queue.push(party);
         }
@@ -19,16 +25,40 @@ function createQueue(){
     return queue;
 }
 
+function createSinglesQueue(){
+    var queue = [];
+    var queueLen = 10;
+    for (var i = 0; i<queueLen;i++){
+        var party = new Party("#000000", 1);
+        for(var j = 0; j < party.size;j++){
+            queue.push(party);
+        }
+        
+    }
+    return queue;
+}
+
+
+
 //function to draw the queue
-function drawQueue (queue){
-    var dy = frontLineY;
-    var dx = lineX;
+function drawQueue (queue, x, y){
+    var dx = x;
+    var dy = y;
+    
+    var width = 25;
+    //id variable to keep track of different parties
+    var id = queue[0]?.partyId;
     for (var i = 0; i<queue.length;i++){
-        queue[i].update(dx, dy);
-        //if queue is at the top of page, start drawing to the right using dx
-        if (i < 4) dy-=45;  
-        else dx += 45;
-  
+        var curId = queue[i].partyId;
+        //if current id is eq to id, theyre in the same party
+        if(id == curId){
+            dx += 55;
+        }else{
+            //different party add spacing and update new id for new party
+            dx += 75;
+            id = curId;
+        }
+        queue[i].update(dx, dy, width);
     }
 }
 
@@ -185,12 +215,22 @@ function moveGuests(rowNum, guestNum, rv, queue){
         drawRvGuests(rv);
 
         //update the position of first guest in line
-        console.log(nextGuest)
         nextGuest.update(rowx, rowy);
+
+        
         
     }    
 
-    console.log(rv);
+    if(queue[0].size>1){
+        //new guest
+        var party = new Party(randomCssRgba(), randomNumber(2, 5));
+        for(var j = 0; j < party.size;j++){
+            queue.push(party);
+        }
+    } else{
+        var party = new Party("#000000", 1);
+        queue.push(party);
+    }
     
 }
 
@@ -209,13 +249,14 @@ function drawRvGuests(rv,  x, y){
     var row1y = y+75;
     var seatGap = 100;
     var rowGap = 90;
+    var width = 20
 
     for (var i = 0; i<6; i++){
         for(var j = 0;j<4;j++){
             //if row == 0 it's empty, otherwise draw guest
             if(rv[i][j] != 0){
                 var guest = rv[i][j];
-                guest.update(row1x+(seatGap*j), row1y+(rowGap*i))
+                guest.update(row1x+(seatGap*j), row1y+(rowGap*i), width)
             }
         }
     }
@@ -235,4 +276,14 @@ function drawNumber(number, x, y){
     console.log("number")
 }
 
-// drawNuber(1, 480, 200)
+//function to disoatch  RV
+function sendRv(){
+    console.log("send rv!")
+    while (rvY > -650){
+            console.log(rvY)
+            rvY -= 1;
+            c.clearRect(0,0, canW, canH)
+            drawQueue(queue);
+            drawRv(rvX, rvY);
+    }
+}
