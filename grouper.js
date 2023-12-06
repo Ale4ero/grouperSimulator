@@ -48,7 +48,13 @@ var rvX;
 var rvY;
 var rvY2;
 var partyId = 0;
+
+
+//counter panel
 var startTime;
+var dispatches;
+var empties;
+var seperated;
 
 
 
@@ -94,7 +100,12 @@ function init(){
     exit = false;
     moveRv = false;
     singleGuest = false;
+
+    //counter panel
     startTime = 60;
+    dispatches = 0;
+    empties = 0;
+    seperated = 0;
 
     //once game is started create the queue and store it 
     queue = createQueue(false);
@@ -135,6 +146,9 @@ function animate(){
 
     //display time
     document.querySelector('.timeText').innerHTML = startTime+':00';
+    document.querySelector('.dispText').innerHTML = dispatches;
+    document.querySelector('.emptText').innerHTML = empties;
+    document.querySelector('.sepText').innerHTML = seperated;
 
         
     if(startTime < 0){
@@ -314,6 +328,7 @@ document.querySelector(".singleBtn").addEventListener('click', ()=>{
 //button tp send RV
 document.querySelector(".sendBtn").addEventListener('click', ()=>{
     moveRv = true;
+    dispatches++;
 })
 
 
