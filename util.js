@@ -287,3 +287,13 @@ function sendRv(){
             drawRv(rvX, rvY);
     }
 }
+
+//this gives you total emoties in rv
+function totalEmpties(rv){
+    var empties = 0;
+    for(var i = 0; i < 6; i++){
+        empties += checkRowEmpties(i+1, rv);
+    }
+
+    return empties;
+}

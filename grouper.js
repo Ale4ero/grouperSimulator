@@ -329,6 +329,7 @@ document.querySelector(".singleBtn").addEventListener('click', ()=>{
 document.querySelector(".sendBtn").addEventListener('click', ()=>{
     moveRv = true;
     dispatches++;
+    empties += totalEmpties(rv);
 })
 
 
