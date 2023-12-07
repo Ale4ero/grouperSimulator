@@ -102,7 +102,7 @@ function init(){
     singleGuest = false;
 
     //counter panel
-    startTime = 60;
+    startTime = 70;
     dispatches = 0;
     empties = 0;
     seperated = 0;
@@ -145,18 +145,18 @@ function animate(){
     document.querySelector('.partyNum').innerHTML = queue[0]?.size;
 
     //display time
-    document.querySelector('.timeText').innerHTML = startTime+':00';
+    document.querySelector('.timeText').innerHTML = startTime;
     document.querySelector('.dispText').innerHTML = dispatches;
     document.querySelector('.emptText').innerHTML = empties;
     document.querySelector('.sepText').innerHTML = seperated;
 
         
     if(startTime < 0){
-        document.querySelector('.welcomeScreen').style.display = 'flex';
         document.querySelector('#numGuests').style.display = 'none';
         document.querySelector('#selectRow').style.display = 'none';
         document.querySelector('.grouperPanel').style.display = 'none';
         document.querySelector('.counterPanel').style.display = 'none';
+        document.querySelector('.gameOverScreen').style.display = 'flex';
         c.clearRect(0, 0, canW, canH);
         exit = true;
     }
@@ -228,31 +228,13 @@ function animate(){
 
 //EXIT button
 document.querySelector(".exitBtn").addEventListener('click', ()=>{
-    console.log('exit click')
-    document.querySelector('.welcomeScreen').style.display = 'flex';
-    document.querySelector('#numGuests').style.display = 'none';
-    document.querySelector('#selectRow').style.display = 'none';
-    document.querySelector('.grouperPanel').style.display = 'none';
-    document.querySelector('.counterPanel').style.display = 'none';
-    c.clearRect(0, 0, canW, canH);
-    exit = true;
+    exitGame();
 })
 
 
 //START button game starts
 document.querySelector("#startBtn").addEventListener('click', ()=>{
-    console.log('start application.')
-    document.querySelector('.grouperPanel').style.display = 'flex';
-    document.querySelector('.welcomeScreen').style.display = 'none';
-    document.querySelector('#numGuests').style.display = 'flex';
-    document.querySelector('.counterPanel').style.display = 'flex';
-
-    //initialize game
-    init();
-
-    //call function to start game
-    animate();
-
+    restartGame();
 })
 
 
@@ -338,6 +320,15 @@ document.querySelector(".backBtn").addEventListener('click', ()=>{
     document.querySelector('#numGuests').style.display = 'flex';
     document.querySelector('#selectRow').style.display = 'none';
     singleGuest = false;
+})
+
+document.querySelector(".rstBtn").addEventListener('click', ()=>{
+    restartGame();
+})
+
+document.querySelector(".gameOvrExitBtn").addEventListener('click', ()=>{
+    document.querySelector(".gameOverScreen").style.display = "none";
+    document.querySelector(".welcomeScreen").style.display = "flex";
 })
 
 

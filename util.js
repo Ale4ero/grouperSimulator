@@ -297,3 +297,30 @@ function totalEmpties(rv){
 
     return empties;
 }
+
+function restartGame(){
+    console.log('start application.')
+    c.clearRect(0,0,canW, canH);
+    document.querySelector('.grouperPanel').style.display = 'flex';
+    document.querySelector('.welcomeScreen').style.display = 'none';
+    document.querySelector('.gameOverScreen').style.display = 'none';
+    document.querySelector('#numGuests').style.display = 'flex';
+    document.querySelector('.counterPanel').style.display = 'flex';
+
+    //initialize game
+    init();
+
+    //call function to start game
+    animate();
+}
+
+function exitGame(){
+    console.log('exit click')
+    document.querySelector('.welcomeScreen').style.display = 'flex';
+    document.querySelector('#numGuests').style.display = 'none';
+    document.querySelector('#selectRow').style.display = 'none';
+    document.querySelector('.grouperPanel').style.display = 'none';
+    document.querySelector('.counterPanel').style.display = 'none';
+    c.clearRect(0, 0, canW, canH);
+    exit = true;
+}

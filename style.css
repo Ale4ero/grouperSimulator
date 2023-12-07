@@ -318,3 +318,38 @@ button:active{
     font-size: 25px;
     font-weight: bold;
 }
+
+.gameOverScreen{
+    display: none;
+    flex-flow: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 1000px;
+    height: 600px;
+    margin: auto;
+    text-align: center;
+    background-color: #393E46;
+    color: #EEEEEE;
+    font-size: 25px;
+    font-weight: 500;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.rstBtn{
+    font-size: 40px;
+}
+
+.gameOvrExitBtn{
+    font-size: 40px;
+    background-color: #9B9C9D;
+    color: #EEEEEE;
+}
+
+.gameOvrBtns{
+    display: flex;
+    gap: 30px;
+}
