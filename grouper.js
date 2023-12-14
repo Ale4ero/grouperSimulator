@@ -1,5 +1,8 @@
-//canvas variable 
+//canvas variables
 var canvas = document.querySelector('canvas');
+var guestScreen = document.querySelector('#numGuests');
+var rowScreen = document.querySelector('#selectRow');
+var overScreen = document.querySelector('.gameOverScreen');
 
 //get width and height of window
 var canW = window.innerWidth;
@@ -48,15 +51,19 @@ var rvX;
 var rvY;
 var rvY2;
 var partyId = 0;
+var askGuests;
+var askRow;
 
 
 //counter panel
-var startTime;
+var min;
+var sec;
 var dispatches;
 var empties;
 var seperated;
 
 
+//audio
 
 
 
@@ -100,9 +107,13 @@ function init(){
     exit = false;
     moveRv = false;
     singleGuest = false;
+    askGuests = false;
+    askRow = false;
+    leftToGroup = 0;
 
     //counter panel
-    startTime = 70;
+    min = 0;
+    sec = 0;
     dispatches = 0;
     empties = 0;
     seperated = 0;
@@ -137,7 +148,7 @@ function animate(){
     requestAnimationFrame(animate);
 
     
-
+    
     
     
 
@@ -145,27 +156,51 @@ function animate(){
     document.querySelector('.partyNum').innerHTML = queue[0]?.size;
 
     //display time
-    document.querySelector('.timeText').innerHTML = startTime;
+    if(sec < 10){
+        document.querySelector('.timeText').innerHTML = min+":0"+sec;       
+    }else{
+        document.querySelector('.timeText').innerHTML = min+":"+sec;
+    }
+    
+
+    //score board top of screen 
     document.querySelector('.dispText').innerHTML = dispatches;
     document.querySelector('.emptText').innerHTML = empties;
     document.querySelector('.sepText').innerHTML = seperated;
 
         
-    if(startTime < 0){
+    //to end the game
+    if(dispatches == 3){
         document.querySelector('#numGuests').style.display = 'none';
         document.querySelector('#selectRow').style.display = 'none';
         document.querySelector('.grouperPanel').style.display = 'none';
         document.querySelector('.counterPanel').style.display = 'none';
-        document.querySelector('.gameOverScreen').style.display = 'flex';
+        overScreen.style.display = 'flex';
         c.clearRect(0, 0, canW, canH);
         exit = true;
+
+        document.querySelector(".dispOver").innerHTML = dispatches;
+        document.querySelector(".emptOver").innerHTML = empties;
+        document.querySelector(".sepOver").innerHTML = seperated;
+        if(sec < 10){
+            document.querySelector('.timeOver').innerHTML = min+":0"+sec;       
+        }else{
+            document.querySelector('.timeOver').innerHTML = min+":"+sec;
+        }
     }
     
 
     
     //size of the next party in line
     partySize = queue[0]?.size;
+    
+    if(leftToGroup == 0){
+        leftToGroup = partySize;
+        console.log("Left to group: "+leftToGroup)
+    }
 
+
+    
 
     //when user picks the order move guests
     if(guestNum != undefined && rowNum != undefined){
@@ -174,6 +209,7 @@ function animate(){
             moveGuests(rowNum, guestNum, rv, singles);
         }else{
             moveGuests(rowNum, guestNum, rv, queue);
+            leftToGroup -= guestNum;
         }
         
 
@@ -188,10 +224,12 @@ function animate(){
 
         drawRvGuests(rv, rvX, rvY);
 
-
+        
         guestNum = undefined;
         rowNum = undefined;
         singleGuest = false;
+        
+        console.log("Left to group: "+leftToGroup)
     }
 
     //move send button, move rv
@@ -199,12 +237,11 @@ function animate(){
         //move rv in station
         if(rvY > -700){
             console.log("move")
-            rvY -= 10;
-            
+            rvY -= 15; 
         }
         //move next rv
         if (rvY2 > 160){
-            rvY2 -= 6;
+            rvY2 -= 10;
             drawRv(rvX, rvY2);
         }else{
             
@@ -222,6 +259,9 @@ function animate(){
         drawRv(rvX, rvY2);
         drawRvGuests(rv, rvX, rvY);
     }
+
+    //if game over
+
    
 }
 
@@ -229,40 +269,66 @@ function animate(){
 //EXIT button
 document.querySelector(".exitBtn").addEventListener('click', ()=>{
     exitGame();
+    pressSound();
 })
+
 
 
 //START button game starts
 document.querySelector("#startBtn").addEventListener('click', ()=>{
     restartGame();
+    pressSound();
 })
+
+
 
 
 
 //buttons to pick amount of guests in order 
 document.querySelector(".btn1").addEventListener('click', ()=>{
-    if (checkAmountBtn(1, partySize)){
+    if (checkAmountBtn(1, leftToGroup)){
         guestNum = 1;
+        pressSound();
+    }else{
+        wrongSound();
     }
+    
 })
+
+
 
 document.querySelector(".btn2").addEventListener('click', ()=>{
-    if (checkAmountBtn(2, partySize)){
+    if (checkAmountBtn(2, leftToGroup)){
         guestNum = 2;
+        pressSound();
+    }else{
+        wrongSound();
     }
+    
 })
+
 
 document.querySelector(".btn3").addEventListener('click', ()=>{
-    if (checkAmountBtn(3, partySize)){
+    if (checkAmountBtn(3, leftToGroup)){
         guestNum = 3;
+        pressSound();
+    }else{
+        wrongSound();
     }
+    
 })
 
+
 document.querySelector(".btn4").addEventListener('click', ()=>{
-    if (checkAmountBtn(4, partySize)){
+    if (checkAmountBtn(4, leftToGroup)){
         guestNum = 4;
+        pressSound();
+    }else{
+        wrongSound();
     }
+    
 })
+
 
 
 
@@ -271,32 +337,55 @@ document.querySelector(".btn4").addEventListener('click', ()=>{
 document.querySelector(".row1").addEventListener('click', ()=>{
     if (checkValidRow(1, guestNum, rv)){
         rowNum = 1;
+        pressSound();
+    }else{
+        wrongSound();
     }
+    
 })
 document.querySelector(".row2").addEventListener('click', ()=>{
     if (checkValidRow(2, guestNum, rv)){
         rowNum = 2;
+        pressSound();
+    }else{
+        wrongSound();
     }
+    
 })
 document.querySelector(".row3").addEventListener('click', ()=>{
     if (checkValidRow(3, guestNum, rv)){
         rowNum = 3;
+        pressSound();    
+    }else{
+        wrongSound();
     }
 })
 document.querySelector(".row4").addEventListener('click', ()=>{
     if (checkValidRow(4, guestNum, rv)){
         rowNum = 4;
+        pressSound();
+    }else{
+        wrongSound();
     }
+    
 })
 document.querySelector(".row5").addEventListener('click', ()=>{
     if (checkValidRow(5, guestNum, rv)){
         rowNum = 5
+        pressSound();
+    }else{
+        wrongSound();
     }
+    
 })
 document.querySelector(".row6").addEventListener('click', ()=>{
     if (checkValidRow(6, guestNum, rv)){
         rowNum = 6;
+        pressSound();
+    }else{
+        wrongSound();
     }
+    
 })
 
 document.querySelector(".singleBtn").addEventListener('click', ()=>{
@@ -304,7 +393,15 @@ document.querySelector(".singleBtn").addEventListener('click', ()=>{
     document.querySelector('#numGuests').style.display = 'none';
     document.querySelector('#selectRow').style.display = 'flex';
     singleGuest = true;
+    pressSound();
 })
+
+document.querySelector(".waitBtn").addEventListener('click', ()=>{
+    wait(queue);
+    
+    pressSound();
+})
+
 
 
 //button tp send RV
@@ -312,7 +409,12 @@ document.querySelector(".sendBtn").addEventListener('click', ()=>{
     moveRv = true;
     dispatches++;
     empties += totalEmpties(rv);
+    sendSound();
+    console.log("left to group: "+leftToGroup)
 })
+// document.querySelector(".sendBtn").addEventListener('mouseover', ()=>{
+//     hoverSound();
+// })
 
 
 //button to go back to select num guests
@@ -320,27 +422,117 @@ document.querySelector(".backBtn").addEventListener('click', ()=>{
     document.querySelector('#numGuests').style.display = 'flex';
     document.querySelector('#selectRow').style.display = 'none';
     singleGuest = false;
+    pressSound();
 })
+
 
 document.querySelector(".rstBtn").addEventListener('click', ()=>{
     restartGame();
+    pressSound();
 })
 
 document.querySelector(".gameOvrExitBtn").addEventListener('click', ()=>{
     document.querySelector(".gameOverScreen").style.display = "none";
     document.querySelector(".welcomeScreen").style.display = "flex";
+    pressSound();
 })
+// document.querySelector(".gameOvrExitBtn").addEventListener('mouseover', ()=>{
+//     hoverSound();
+// })
 
 
 
 
 
 setInterval(()=>{
-    startTime--;
+    if(sec == 60){
+        min++;
+        sec = 0;
+    }
+    sec++;
 }, 1000)
 
 
+// document.addEventListener('keyup', handleKeyInput);
 
 
+document.addEventListener('keydown', (event)=>{
+    const {key} = event;
+    var input = undefined;
 
+    if(guestScreen.style.display == 'flex'){
+        console.log("choose guests")
+        switch (key){
+            case '1':{
+                input = 1
+                break;
+            } 
+            case '2':{
+                input = 2;
+                break;
+            }
+            case '3':{
+                input = 3;
+                break;
+            }
+            case '4':{
+                input = 4;
+                break;
+            }
+            
+    
+        }
+    
+        if(input){
+            if (checkAmountBtn(input, partySize)){
+                guestNum = input;
+                pressSound();
+            }else{
+                wrongSound();
+            }
+        }
+    }
+
+    else if(rowScreen.style.display == 'flex'){
+        switch (key){
+            case '1':{
+                input = 1
+                break;
+            } 
+            case '2':{
+                input = 2;
+                break;
+            }
+            case '3':{
+                input = 3;
+                break;
+            }
+            case '4':{
+                input = 4;
+                break;
+            }
+            case '5':{
+                input = 5;
+                break;
+            }
+            case '6':{
+                input = 6;
+                break;
+            }
+            
+    
+        }
+    
+        if(input){
+            if (checkValidRow(input, guestNum, rv)){
+                rowNum = input;
+                pressSound();
+            }else{
+                wrongSound();
+            }
+        }
+    }
+    
+    
+});
 

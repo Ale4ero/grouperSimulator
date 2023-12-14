@@ -83,7 +83,6 @@ function createNewRV(){
 
 //function draws the structure of the rv
 function drawRv(x, y){
-    console.log('draw rv')
     var rvX = x;
     var rvY = y;
     var rvWidth = 450;
@@ -200,9 +199,9 @@ function moveGuests(rowNum, guestNum, rv, queue){
 
         //new position to draw guest
         rowx = rowx + (seatGap*seatNum);
-        console.log('Moving: 75 + 150*'+seatNum);
+        
         rowy = rowy + (rowGap*rowNum);
-        console.log('Moving: 75 + 110*'+rowNum);
+    
         var nextGuest = queue[0];
         
         //set array element to 1 to show seat is now taken 
@@ -273,20 +272,19 @@ function drawNumber(number, x, y){
     c.fillStyle = '#ffffff';
     c.font = "20px sans-serif"
     c.fillText(number,x + 10, y + 25);
-    console.log("number")
 }
 
 //function to disoatch  RV
-function sendRv(){
-    console.log("send rv!")
-    while (rvY > -650){
-            console.log(rvY)
-            rvY -= 1;
-            c.clearRect(0,0, canW, canH)
-            drawQueue(queue);
-            drawRv(rvX, rvY);
-    }
-}
+// function sendRv(){
+//     console.log("send rv!")
+//     while (rvY > -650){
+//             console.log(rvY)
+//             rvY -= 1;
+//             c.clearRect(0,0, canW, canH)
+//             drawQueue(queue);
+//             drawRv(rvX, rvY);
+//     }
+// }
 
 //this gives you total emoties in rv
 function totalEmpties(rv){
@@ -323,4 +321,80 @@ function exitGame(){
     document.querySelector('.counterPanel').style.display = 'none';
     c.clearRect(0, 0, canW, canH);
     exit = true;
+}
+
+function wait(queue){
+    console.log(queue);
+    var i = 0;
+    var firstPoint = 0;
+    var secondPoint;
+    var size;
+
+    
+    var loop = true;
+    while(loop){
+        i++;
+        var firstParty = queue[0].partyId;
+        var tempParty = queue[i].partyId;
+        if(tempParty != firstParty){
+            secondPoint = i
+            loop = false;
+        }
+    }
+
+    console.log("first party size: "+queue[firstPoint].size)
+
+    
+    size = queue[secondPoint].size
+    
+
+    console.log("size: "+size)
+
+    for(var j = 0;j < size; j++){
+        console.log("switching index "+firstPoint+" with index "+secondPoint)
+        var temp = queue[firstPoint]
+        queue[firstPoint] = queue[secondPoint];
+        queue[secondPoint] = temp;
+        firstPoint++;
+        secondPoint++;
+    }
+
+    c.clearRect(0, 0, canW, canH);
+    //draw the queue to the canvas
+    drawQueue(queue, lineX, frontLineY);
+    drawQueue(singles, lineX, frontLineY - 100);
+
+
+    //draw the rv graphic to the canvas
+    drawRv(rvX, rvY);
+    drawRv(rvX, rvY2);
+
+    leftToGroup = size
+    console.log("left to group: "+leftToGroup)
+
+    drawRvGuests(rv, rvX, rvY);
+    console.log(queue);
+}
+
+function pressSound(){
+    var btnSound = new Audio("./audio/pressedBtn.mp3")
+    btnSound.play();
+}
+
+function hoverSound(){
+    var sound = new Audio("./audio/menuSelect.mp3");
+    sound.volume = .2;
+    sound.play();
+}
+
+function wrongSound(){
+    var sound = new Audio("./audio/wrong.mp3");
+    sound.volume = .5;
+    sound.play();
+}
+
+function sendSound(){
+    var sound = new Audio("./audio/score.mp3");
+    sound.volume = .5;
+    sound.play();
 }

@@ -138,14 +138,14 @@ p{
     /* right: 50px;
     left: 50px; */
     justify-content: center;
-    gap: 45px;
+    gap: 20px;
 }
 
 
 .selectGrid .row{
     display: grid;
     grid-auto-flow: column;
-    gap: 50px;
+    gap: 20px;
 }
 
 #selectRow .selectGrid button{
@@ -339,6 +339,8 @@ button:active{
     border-radius: 20px;
 }
 
+
+
 .rstBtn{
     font-size: 40px;
 }
@@ -352,4 +354,15 @@ button:active{
 .gameOvrBtns{
     display: flex;
     gap: 30px;
+}
+
+.points{
+    /* background-color: #0DB44F; */
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.pointName{
+    margin-right: auto;
 }
