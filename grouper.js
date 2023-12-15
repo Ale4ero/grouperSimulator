@@ -56,6 +56,7 @@ var askRow;
 
 
 //counter panel
+var time = 60;
 var min;
 var sec;
 var dispatches;
@@ -112,6 +113,7 @@ function init(){
     leftToGroup = 0;
 
     //counter panel
+    time = 0;
     min = 0;
     sec = 0;
     dispatches = 0;
@@ -193,7 +195,7 @@ function animate(){
     
     //size of the next party in line
     partySize = queue[0]?.size;
-    
+
     if(leftToGroup == 0){
         leftToGroup = partySize;
         console.log("Left to group: "+leftToGroup)
@@ -288,7 +290,7 @@ document.querySelector("#startBtn").addEventListener('click', ()=>{
 document.querySelector(".btn1").addEventListener('click', ()=>{
     if (checkAmountBtn(1, leftToGroup)){
         guestNum = 1;
-        pressSound();
+        clickSound();
     }else{
         wrongSound();
     }
@@ -300,7 +302,7 @@ document.querySelector(".btn1").addEventListener('click', ()=>{
 document.querySelector(".btn2").addEventListener('click', ()=>{
     if (checkAmountBtn(2, leftToGroup)){
         guestNum = 2;
-        pressSound();
+        clickSound();
     }else{
         wrongSound();
     }
@@ -311,7 +313,7 @@ document.querySelector(".btn2").addEventListener('click', ()=>{
 document.querySelector(".btn3").addEventListener('click', ()=>{
     if (checkAmountBtn(3, leftToGroup)){
         guestNum = 3;
-        pressSound();
+        clickSound();
     }else{
         wrongSound();
     }
@@ -322,7 +324,7 @@ document.querySelector(".btn3").addEventListener('click', ()=>{
 document.querySelector(".btn4").addEventListener('click', ()=>{
     if (checkAmountBtn(4, leftToGroup)){
         guestNum = 4;
-        pressSound();
+        clickSound();
     }else{
         wrongSound();
     }
@@ -337,7 +339,7 @@ document.querySelector(".btn4").addEventListener('click', ()=>{
 document.querySelector(".row1").addEventListener('click', ()=>{
     if (checkValidRow(1, guestNum, rv)){
         rowNum = 1;
-        pressSound();
+        clickSound();
     }else{
         wrongSound();
     }
@@ -346,7 +348,7 @@ document.querySelector(".row1").addEventListener('click', ()=>{
 document.querySelector(".row2").addEventListener('click', ()=>{
     if (checkValidRow(2, guestNum, rv)){
         rowNum = 2;
-        pressSound();
+        clickSound();
     }else{
         wrongSound();
     }
@@ -355,7 +357,7 @@ document.querySelector(".row2").addEventListener('click', ()=>{
 document.querySelector(".row3").addEventListener('click', ()=>{
     if (checkValidRow(3, guestNum, rv)){
         rowNum = 3;
-        pressSound();    
+        clickSound();   
     }else{
         wrongSound();
     }
@@ -363,7 +365,7 @@ document.querySelector(".row3").addEventListener('click', ()=>{
 document.querySelector(".row4").addEventListener('click', ()=>{
     if (checkValidRow(4, guestNum, rv)){
         rowNum = 4;
-        pressSound();
+        clickSound();
     }else{
         wrongSound();
     }
@@ -372,7 +374,7 @@ document.querySelector(".row4").addEventListener('click', ()=>{
 document.querySelector(".row5").addEventListener('click', ()=>{
     if (checkValidRow(5, guestNum, rv)){
         rowNum = 5
-        pressSound();
+        clickSound();
     }else{
         wrongSound();
     }
@@ -381,7 +383,7 @@ document.querySelector(".row5").addEventListener('click', ()=>{
 document.querySelector(".row6").addEventListener('click', ()=>{
     if (checkValidRow(6, guestNum, rv)){
         rowNum = 6;
-        pressSound();
+        clickSound();
     }else{
         wrongSound();
     }
@@ -393,13 +395,13 @@ document.querySelector(".singleBtn").addEventListener('click', ()=>{
     document.querySelector('#numGuests').style.display = 'none';
     document.querySelector('#selectRow').style.display = 'flex';
     singleGuest = true;
-    pressSound();
+    singleSound();
 })
 
 document.querySelector(".waitBtn").addEventListener('click', ()=>{
     wait(queue);
     
-    pressSound();
+    switchSound();
 })
 
 
@@ -452,6 +454,15 @@ setInterval(()=>{
     sec++;
 }, 1000)
 
+// setInterval(()=>{
+//     if(sec == 0){
+//         min--;
+//         sec = 60;
+//     }
+//     sec--;
+//     time--;
+// }, 1000)
+
 
 // document.addEventListener('keyup', handleKeyInput);
 
@@ -479,17 +490,31 @@ document.addEventListener('keydown', (event)=>{
                 input = 4;
                 break;
             }
+            case 's':{
+                input = 's';
+                break;
+            }
             
     
         }
     
         if(input){
-            if (checkAmountBtn(input, partySize)){
-                guestNum = input;
-                pressSound();
+            if(input == 's'){
+                guestNum = 1;
+                document.querySelector('#numGuests').style.display = 'none';
+                document.querySelector('#selectRow').style.display = 'flex';
+                singleGuest = true;
+                singleSound();
             }else{
-                wrongSound();
+
+                if (checkAmountBtn(input, leftToGroup)){
+                    guestNum = input;
+                    pressSound();
+                }else{
+                    wrongSound();
+                }
             }
+            
         }
     }
 

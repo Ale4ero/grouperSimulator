@@ -79,6 +79,7 @@ canvas{
     font-weight: 500;
     align-items: center;
     border-radius: 20px;
+    border:#00ADB5 5px solid;
 }
 
 .title{
@@ -337,6 +338,7 @@ button:active{
     font-weight: 500;
     align-items: center;
     border-radius: 20px;
+    border: #00ADB5 5px solid;
 }
 
 

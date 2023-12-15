@@ -398,3 +398,23 @@ function sendSound(){
     sound.volume = .5;
     sound.play();
 }
+function bubbleSound(){
+    var sound = new Audio("./audio/bubble.mp3");
+    sound.volume = .5;
+    sound.play();
+}
+function switchSound(){
+    var sound = new Audio("./audio/switch.mp3");
+    sound.volume = .5;
+    sound.play();
+}
+function clickSound(){
+    var sound = new Audio("./audio/click.mp3");
+    sound.volume = .5;
+    sound.play();
+}
+function singleSound(){
+    var sound = new Audio("./audio/single.mp3");
+    sound.volume = .5;
+    sound.play();
+}
