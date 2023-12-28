@@ -70,12 +70,13 @@ var seperated;
 
 
 //party object 
-function Party(color, size){
+function Party(color, size, single){
 
     // this.width = width;
     this.color = color;
     this.size = size;
     this.partyId = partyId++;
+    this.single = single;
 
 
     this.draw = (x, y, width)=>{
@@ -412,7 +413,9 @@ document.querySelector(".sendBtn").addEventListener('click', ()=>{
     dispatches++;
     empties += totalEmpties(rv);
     sendSound();
+    seperated += checkSeperated(rv)
     console.log("left to group: "+leftToGroup)
+    console.log(rv);
 })
 // document.querySelector(".sendBtn").addEventListener('mouseover', ()=>{
 //     hoverSound();

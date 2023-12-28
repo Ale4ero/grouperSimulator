@@ -13,9 +13,9 @@ function createQueue(singles){
 
     for (var i = 0; i<queueLen;i++){
         if (singles){
-            var party = new Party("#000000", 1);
+            var party = new Party("#000000", 1, true);
         }else{
-            var party = new Party(randomCssRgba(), randomNumber(2, 9));
+            var party = new Party(randomCssRgba(), randomNumber(2, 9), false);
         }
         for(var j = 0; j < party.size;j++){
             queue.push(party);
@@ -312,6 +312,7 @@ function restartGame(){
     animate();
 }
 
+//fcuntion to exit game
 function exitGame(){
     console.log('exit click')
     document.querySelector('.welcomeScreen').style.display = 'flex';
@@ -323,6 +324,7 @@ function exitGame(){
     exit = true;
 }
 
+//function to have next party inline wait, and swap positions with the party behind them
 function wait(queue){
     console.log(queue);
     var i = 0;
@@ -374,6 +376,38 @@ function wait(queue){
 
     drawRvGuests(rv, rvX, rvY);
     console.log(queue);
+}
+
+function checkSeperated(rv){
+    var sep = 0;
+
+    for(var i = 0; i < 6;i++){
+        for(var j = 0; j < 4; j++){
+            var curGuest = rv[i][j]
+            if(curGuest.single || curGuest == undefined) break;
+            if(j == 0){
+                var nextGuest = rv[i][j+1]
+
+                if(curGuest.partyId != nextGuest.partyId){
+                    sep++;
+                }
+            }else if(j == 3){
+                var prevGuest = rv[i][j-1]
+                if(curGuest.partyId != prevGuest.partyId){
+                    sep++;
+                }
+            }else{
+                var nextGuest = rv[i][j+1]
+                var prevGuest = rv[i][j-1]
+
+                if((curGuest.partyId != nextGuest.partyId) && (curGuest.partyId != prevGuest.partyId)){
+                    sep++
+                }
+            }
+        }
+    }
+
+    return sep;
 }
 
 function pressSound(){
