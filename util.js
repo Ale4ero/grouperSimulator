@@ -154,8 +154,11 @@ function checkValidRow(rowNum, guestNum, rv){
         }, 500);
         return false;
     }else{
-        document.querySelector('#selectRow').style.display = 'none';
-        document.querySelector('#numGuests').style.display = 'flex';
+        if(!singleGuest){
+            document.querySelector('#selectRow').style.display = 'none';
+            document.querySelector('#numGuests').style.display = 'flex';
+        }
+        
         return true;
     }
 }

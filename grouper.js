@@ -227,10 +227,13 @@ function animate(){
 
         drawRvGuests(rv, rvX, rvY);
 
-        
-        guestNum = undefined;
+        //only reset guestNum if not single
+        if(!singleGuest){
+            guestNum = undefined;
+            singleGuest = false;
+        } 
         rowNum = undefined;
-        singleGuest = false;
+        
         
         console.log("Left to group: "+leftToGroup)
     }
