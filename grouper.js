@@ -28,14 +28,17 @@ window.addEventListener('resize', ()=>{
     canH = window.innerHeight; 
     canvas.width = canW;
     canvas.height = canH;
+
+    frontLineY = canH/2 - 100;
+    lineX = canW/2;
  })
 
 
 
 
 //GLOBAL variables
-const frontLineY = canH/2 - 100;
-const lineX = canW/2;
+var frontLineY = canH/2 - 100;
+var lineX = canW/2;
 var guestNum;
 var rowNum;
 var queue;
@@ -103,8 +106,11 @@ function Party(color, size, single){
 
 //function that initializes the app
 function init(){
+    //x value of where the RV is drawn on the screen
     rvX = 50;
+    //y value for point on screen where RV is drawn
     rvY = 150;
+    //v value for second rv waiting behind it(only for visuals does not get loaded)
     rvY2 = canH - 100; 
     exit = false;
     moveRv = false;
@@ -140,6 +146,16 @@ function init(){
     drawRv(rvX, rvY2);
 
     drawRvGuests(rv, rvX, rvY);
+
+    window.addEventListener('resize', ()=>{
+        drawQueue(queue, lineX,frontLineY);
+        drawQueue(singles, lineX, frontLineY - 100);
+        
+        drawRv(rvX, rvY);
+        drawRv(rvX, rvY2);
+
+        drawRvGuests(rv, rvX, rvY);
+    })
 }
 
 
@@ -344,6 +360,7 @@ document.querySelector(".row1").addEventListener('click', ()=>{
     if (checkValidRow(1, guestNum, rv)){
         rowNum = 1;
         clickSound();
+        
     }else{
         wrongSound();
     }

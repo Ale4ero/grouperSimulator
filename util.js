@@ -4,6 +4,8 @@
 
 
 
+
+
 //create queue function
 function createQueue(singles){
     var queue = [];
@@ -25,6 +27,7 @@ function createQueue(singles){
     return queue;
 }
 
+//create queue of singles
 function createSinglesQueue(){
     var queue = [];
     var queueLen = 10;
@@ -154,10 +157,8 @@ function checkValidRow(rowNum, guestNum, rv){
         }, 500);
         return false;
     }else{
-        if(!singleGuest){
-            document.querySelector('#selectRow').style.display = 'none';
-            document.querySelector('#numGuests').style.display = 'flex';
-        }
+        document.querySelector('#selectRow').style.display = 'none';
+        document.querySelector('#numGuests').style.display = 'flex';
         
         return true;
     }

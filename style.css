@@ -44,22 +44,48 @@ canvas{
 }
 .grouperPanel{
     display: none;
-    position: absolute;
-    top: 500px;
-    right: 650px;
+    position: absolute; 
+    right: 0;
+    left: 0;
+    top: 0;
     bottom: 50px;
-    left: 650px;
-    background: #393E46;
-    border: 5px solid #EEEEEE;
+    /* background: #393E46;  */
+    /* border: 5px solid #EEEEEE; */
     justify-content: center;
     align-items: center;
     z-index: 20;
     border-radius: 20px;
+    height: 400px;
+    margin: 0 auto;
+    margin-top: auto;
+    padding: 50px;
+    background-color: #0DB44F;
+    height: 300px;
 }
 
 .btnPanel{
     display: none;
+    position: absolute;
+    background: #393E46; 
+    border: 5px solid #EEEEEE;
+    border-radius: 20px;
+    /* width: fit-content; */
+    width: fit-content;
+    margin: 0 auto;
+    padding: 0 60px;
+    height: fit-content;
 }
+
+/* #numGuests{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    gap: 30px;
+} */
 
 .welcomeScreen{
     display: flex;
@@ -69,14 +95,13 @@ canvas{
     left: 0;
     right: 0;
     bottom: 0;
-    width: 1000px;
-    height: 500px;
+    width: 60%;
+    max-width: 1000px; 
+    height: 50%;
     margin: auto;
     text-align: center;
     background-color: #393E46;
     color: #EEEEEE;
-    font-size: 25px;
-    font-weight: 500;
     align-items: center;
     border-radius: 20px;
     border:#00ADB5 5px solid;
@@ -114,7 +139,7 @@ p{
 .mainName{
     position: relative;
     text-align: center;
-    font-size: 70px;
+    font-size: clamp(30px, 8vw, 70px);
     font-weight: 900;
     margin-bottom: 50px;
 }
@@ -124,7 +149,8 @@ p{
     margin: auto 0;
     top: 0;
     bottom: 0;
-    width: 300px;
+    /* width: 300px; */
+    padding: 5px 30px;
     color: #222831;
     background-color: #00ADB5;
 }
@@ -149,7 +175,9 @@ p{
     gap: 20px;
 }
 
-#selectRow .selectGrid button{
+
+
+.selectGrid button{
     width: 150px;
     height: 80px;
 }
@@ -172,10 +200,10 @@ p{
 button{
     background-color: #222831;
     border: none;
-    width: 180px;
-    height: 90px;
+    /* padding: 3px 60px; */
     border-radius: 10px;
-    font-size: 60px;
+    /* font-size: 60px; */
+    font-size: clamp(30px, 7vw, 60px);
     font-weight: bold;
     color: #00ADB5;
     box-shadow: 5px 4px 1px #4c4e52;
@@ -224,7 +252,7 @@ button:active{
     position: relative;
     flex-direction: column;
     background-color: #222831;
-    gap: 15px;
+    gap: 10px;
     padding: 10px;
     border-radius: 10px;
     /* right: 0; */
@@ -266,16 +294,7 @@ button:active{
     background-color: #FCE51C;
 }
 
-#numGuests{
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    gap: 30px;
-}
+
 
 .fa-solid{
     color: #222831;
@@ -285,13 +304,16 @@ button:active{
     display: none;
     align-items: center;
     justify-content: center;
-    gap: 40px;
+    /* gap: 4em; */
     background-color: #393E46;
-    width: 700px;
+    max-width: 700px;
+    min-width: 400px;
     margin: 0 auto;
-    left: 0;
-    right: 0;
+    left: 15px;
+    right: 15px;
     top: 30px;
+    /* top: 0; */
+
     position: absolute;
     border-radius: 5px;
 }
